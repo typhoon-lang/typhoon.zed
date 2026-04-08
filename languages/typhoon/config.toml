@@ -1,0 +1,4 @@
+name = "Typhoon"
+grammar = "typhoon"
+path_suffixes = ["ty"]
+line_comments = ["//"]

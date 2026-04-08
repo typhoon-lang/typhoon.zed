@@ -1,0 +1,11 @@
+id = "typhoon.zed"
+name = "typhoon.zed"
+version = "0.0.1"
+schema_version = 1
+authors = ["Afrizal Fikri <afrizalf96@gmail.com>"]
+description = "Typhoon LSP"
+repository = "https://github.com/koneko096/typhoon.zed"
+
+[grammars.typhoon]
+repository = "https://github.com/koneko096/tree-sitter-typhoon"
+rev = "b64cd0d11744750cdf4193f2dbdd294558fc00be"
