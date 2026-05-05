@@ -1,4 +1,20 @@
-; Identifiers
+; --- Typhoon Specific Additions ---
+
+; New Keywords
+"conc" @keyword
+"extend" @keyword
+"interface" @keyword
+"newtype" @keyword
+"select" @keyword
+"recv" @keyword
+
+; Pipe Operator
+"|>" @operator
+
+; Spread Operator[cite: 2]
+"..." @punctuation.delimiter
+
+; --- Existing Identifiers ---
 
 (type_identifier) @type
 (primitive_type) @type.builtin
@@ -67,73 +83,39 @@
 (function_item (identifier) @function)
 (function_signature_item (identifier) @function)
 
+; --- Comments ---
+
 (line_comment) @comment
 (block_comment) @comment
 
 (line_comment (doc_comment)) @comment.documentation
 (block_comment (doc_comment)) @comment.documentation
 
-"(" @punctuation.bracket
-")" @punctuation.bracket
-"[" @punctuation.bracket
-"]" @punctuation.bracket
-"{" @punctuation.bracket
-"}" @punctuation.bracket
+; --- Punctuation & Brackets ---
 
-(type_arguments
-  "<" @punctuation.bracket
-  ">" @punctuation.bracket)
-(type_parameters
-  "<" @punctuation.bracket
-  ">" @punctuation.bracket)
+["(" ")" "[" "]" "{" "}"] @punctuation.bracket
 
-"::" @punctuation.delimiter
-":" @punctuation.delimiter
-"." @punctuation.delimiter
-"," @punctuation.delimiter
-";" @punctuation.delimiter
+(type_arguments ["<" ">"] @punctuation.bracket)
+(type_parameters ["<" ">"] @punctuation.bracket)
+
+["::" ":" "." "," ";"] @punctuation.delimiter
+
+; --- Parameters & Variables ---
 
 (parameter (identifier) @variable.parameter)
-
+(self) @variable.builtin
 (lifetime (identifier) @label)
 
-"as" @keyword
-"async" @keyword
-"await" @keyword
-"break" @keyword
-"const" @keyword
-"continue" @keyword
-"default" @keyword
-"dyn" @keyword
-"else" @keyword
-"enum" @keyword
-"extern" @keyword
-"fn" @keyword
-"for" @keyword
-"gen" @keyword
-"if" @keyword
-"impl" @keyword
-"in" @keyword
-"let" @keyword
-"loop" @keyword
-"macro_rules!" @keyword
-"match" @keyword
-"mod" @keyword
-"move" @keyword
-"pub" @keyword
-"raw" @keyword
-"ref" @keyword
-"return" @keyword
-"static" @keyword
-"struct" @keyword
-"trait" @keyword
-"type" @keyword
-"union" @keyword
-"unsafe" @keyword
-"use" @keyword
-"where" @keyword
-"while" @keyword
-"yield" @keyword
+; --- Keywords ---
+
+[
+  "as" "async" "await" "break" "const" "continue" "default" "dyn" "else"
+  "enum" "extern" "fn" "for" "gen" "if" "impl" "in" "let" "loop"
+  "macro_rules!" "match" "mod" "move" "pub" "raw" "ref" "return"
+  "static" "struct" "trait" "type" "union" "unsafe" "use" "where"
+  "while" "yield"
+] @keyword
+
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -141,21 +123,15 @@
 (scoped_identifier (self) @keyword)
 (super) @keyword
 
-(self) @variable.builtin
+; --- Literals ---
 
-(char_literal) @string
-(string_literal) @string
-(raw_string_literal) @string
-
-(boolean_literal) @constant.builtin
-(integer_literal) @constant.builtin
-(float_literal) @constant.builtin
-
+[(char_literal) (string_literal) (raw_string_literal)] @string
+[(boolean_literal) (integer_literal) (float_literal)] @constant.builtin
 (escape_sequence) @escape
+
+; --- Attributes & Operators ---
 
 (attribute_item) @attribute
 (inner_attribute_item) @attribute
 
-"*" @operator
-"&" @operator
-"'" @operator
+["*" "&" "'" "!" "+" "-" "/" "%" "^" "==" "!=" ">" "<" ">=" "<=" "="] @operator
